@@ -88,3 +88,7 @@ F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.csproj.CoreCompileInputs.cache
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.csproj.CopyComplete
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.dll
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.pdb
+F:\LibraryAppMVC\bin\PagedList.dll
+F:\LibraryAppMVC\bin\PagedList.Mvc.dll
+F:\LibraryAppMVC\bin\PagedList.xml
+F:\LibraryAppMVC\bin\PagedList.Mvc.xml
