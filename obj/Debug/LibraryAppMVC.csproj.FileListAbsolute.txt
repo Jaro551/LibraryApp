@@ -92,3 +92,5 @@ F:\LibraryAppMVC\bin\PagedList.dll
 F:\LibraryAppMVC\bin\PagedList.Mvc.dll
 F:\LibraryAppMVC\bin\PagedList.xml
 F:\LibraryAppMVC\bin\PagedList.Mvc.xml
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.InitialCreate.resources
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.csproj.GenerateResource.cache
