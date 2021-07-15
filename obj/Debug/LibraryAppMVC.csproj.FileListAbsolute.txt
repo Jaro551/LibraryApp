@@ -94,3 +94,4 @@ F:\LibraryAppMVC\bin\PagedList.xml
 F:\LibraryAppMVC\bin\PagedList.Mvc.xml
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.InitialCreate.resources
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.csproj.GenerateResource.cache
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.UserLibraryCardMigration.resources

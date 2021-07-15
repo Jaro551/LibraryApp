@@ -25,8 +25,23 @@
                 new Author{FirstName="Henryk", LastName="Sienkiewicz", DateOfBirth=DateTime.Parse("1846-05-05")},
                 new Author{FirstName="Suzanne", LastName="Collins", DateOfBirth=DateTime.Parse("1846-05-05")}
             };
-
             authors.ForEach(item => context.Authors.AddOrUpdate(p => p.LastName, item));
+            context.SaveChanges();
+
+            var users = new List<User>
+            {
+                new User { FirstName = "Jan", LastName = "Nowak", Email = "jannowak@gmail.com", DateOfBirth=DateTime.Parse("1999-05-05")},
+                new User { FirstName = "Maria", LastName = "Nowakowska", Email = "marianowakowska@gmail.com", DateOfBirth=DateTime.Parse("1985-11-03")}
+            };
+            users.ForEach(item => context.Users.AddOrUpdate(p => p.LastName, item));
+            context.SaveChanges();
+
+            var librarycards = new List<LibraryCard>
+            {
+                new LibraryCard { UserID = users.Single(item => item.LastName == "Nowak").UserID },
+                new LibraryCard { UserID = users.Single(item => item.LastName == "Nowakowska").UserID }
+            };
+            librarycards.ForEach(item => context.LibraryCards.AddOrUpdate(item));
             context.SaveChanges();
 
             var books = new List<Book>
@@ -35,13 +50,15 @@
                 {
                     Title = "Harry Potter i Zakon Feniksa",
                     AuthorID = authors.Single(c => c.LastName == "Rowling").AuthorID,
-                    ReleaseDate = DateTime.Parse("2003-06-21")
+                    ReleaseDate = DateTime.Parse("2003-06-21"),
+                    LibraryCardID = librarycards.Single(item => item.UserID == 1).UserID
                 },
                 new Book
                 {
                     Title = "Harry Potter i Kamień Filozoficzny",
                     AuthorID = authors.Single(c => c.LastName == "Rowling").AuthorID,
-                    ReleaseDate = DateTime.Parse("1997-06-26")
+                    ReleaseDate = DateTime.Parse("1997-06-26"),
+                    LibraryCardID = librarycards.Single(item => item.UserID == 2).UserID
                 },
                 new Book
                 {
@@ -53,7 +70,8 @@
                 {
                     Title = "Potop",
                     AuthorID = authors.Single(c => c.LastName == "Sienkiewicz").AuthorID,
-                    ReleaseDate = DateTime.Parse("1895-03-26")
+                    ReleaseDate = DateTime.Parse("1895-03-26"),
+                    LibraryCardID = librarycards.Single(item => item.UserID == 1).UserID
                 },
                 new Book
                 {

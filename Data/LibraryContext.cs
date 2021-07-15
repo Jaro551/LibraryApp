@@ -10,6 +10,9 @@ namespace LibraryAppMVC.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<LibraryCard> LibraryCards { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

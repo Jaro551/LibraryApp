@@ -22,6 +22,8 @@ namespace LibraryAppMVC.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
+        public int? LibraryCardID { get; set; }
+
         public virtual Author Author { get; set; }
         public virtual LibraryCard LibraryCard { get; set; }
     }

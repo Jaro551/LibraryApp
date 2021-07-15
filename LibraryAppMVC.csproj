@@ -144,6 +144,10 @@
     <Compile Include="Migrations\202107151355003_InitialCreate.designer.cs">
       <DependentUpon>202107151355003_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107151746150_UserLibraryCardMigration.cs" />
+    <Compile Include="Migrations\202107151746150_UserLibraryCardMigration.designer.cs">
+      <DependentUpon>202107151746150_UserLibraryCardMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
@@ -213,6 +217,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202107151355003_InitialCreate.resx">
       <DependentUpon>202107151355003_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151746150_UserLibraryCardMigration.resx">
+      <DependentUpon>202107151746150_UserLibraryCardMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
