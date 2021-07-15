@@ -16,9 +16,32 @@ namespace LibraryAppMVC.Controllers
         private LibraryContext db = new LibraryContext();
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var books = db.Books.Include(b => b.Author);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(item => item.Title.Contains(searchString)
+                                    || item.Author.FirstName.Contains(searchString)
+                                    || item.Author.LastName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    books = books.OrderByDescending(item => item.Title);
+                    break;
+                case "Date":
+                    books = books.OrderBy(item => item.ReleaseDate);
+                    break;
+                case "date_desc":
+                    books = books.OrderByDescending(item => item.ReleaseDate);
+                    break;
+                default:
+                    books = books.OrderBy(item => item.Title);
+                    break;
+            }
             return View(books.ToList());
         }
 
@@ -49,7 +72,7 @@ namespace LibraryAppMVC.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookID,Title,AuthorID,ReleaseDate")] Book book)
+        public ActionResult Create([Bind(Include = "Title,AuthorID,ReleaseDate")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -81,26 +104,40 @@ namespace LibraryAppMVC.Controllers
         // POST: Books/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookID,Title,AuthorID,ReleaseDate")] Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(book).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AuthorID = new SelectList(db.Authors, "AuthorID", "FirstName", book.AuthorID);
-            return View(book);
-        }
-
-        // GET: Books/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditBook(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var bookToUpdate = db.Books.Find(id);
+            if (TryUpdateModel(bookToUpdate, "", new string[] { "Title", "AuthorID", "ReleaseDate" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Nie można zapisać zmian.");
+                }
+            }
+            return View(bookToUpdate);
+        }
+
+        // GET: Books/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMsg = "Niepowodzenie, spróbuj ponownie";
             }
             Book book = db.Books.Find(id);
             if (book == null)
@@ -111,13 +148,20 @@ namespace LibraryAppMVC.Controllers
         }
 
         // POST: Books/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Book book = db.Books.Find(id);
-            db.Books.Remove(book);
-            db.SaveChanges();
+            try
+            {
+                Book book = db.Books.Find(id);
+                db.Books.Remove(book);
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 
