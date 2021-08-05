@@ -95,3 +95,6 @@ F:\LibraryAppMVC\bin\PagedList.Mvc.xml
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.InitialCreate.resources
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.csproj.GenerateResource.cache
 F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.UserLibraryCardMigration.resources
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.UserPasswordMigration.resources
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.LoginAddMigration.resources
+F:\LibraryAppMVC\obj\Debug\LibraryAppMVC.Migrations.AddDateColumn.resources

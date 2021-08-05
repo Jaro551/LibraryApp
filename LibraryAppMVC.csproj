@@ -135,6 +135,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\LibraryContext.cs" />
     <Compile Include="Data\LibraryInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,10 +149,23 @@
     <Compile Include="Migrations\202107151746150_UserLibraryCardMigration.designer.cs">
       <DependentUpon>202107151746150_UserLibraryCardMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107151821014_UserPasswordMigration.cs" />
+    <Compile Include="Migrations\202107151821014_UserPasswordMigration.designer.cs">
+      <DependentUpon>202107151821014_UserPasswordMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107152011180_LoginAddMigration.cs" />
+    <Compile Include="Migrations\202107152011180_LoginAddMigration.designer.cs">
+      <DependentUpon>202107152011180_LoginAddMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108051335085_AddDateColumn.cs" />
+    <Compile Include="Migrations\202108051335085_AddDateColumn.designer.cs">
+      <DependentUpon>202108051335085_AddDateColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\LibraryCard.cs" />
+    <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,17 +203,22 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Books\Delete.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\LibraryCards\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -220,6 +239,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107151746150_UserLibraryCardMigration.resx">
       <DependentUpon>202107151746150_UserLibraryCardMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107151821014_UserPasswordMigration.resx">
+      <DependentUpon>202107151821014_UserPasswordMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107152011180_LoginAddMigration.resx">
+      <DependentUpon>202107152011180_LoginAddMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108051335085_AddDateColumn.resx">
+      <DependentUpon>202108051335085_AddDateColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

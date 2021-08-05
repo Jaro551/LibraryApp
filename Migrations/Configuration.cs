@@ -30,8 +30,8 @@
 
             var users = new List<User>
             {
-                new User { FirstName = "Jan", LastName = "Nowak", Email = "jannowak@gmail.com", DateOfBirth=DateTime.Parse("1999-05-05")},
-                new User { FirstName = "Maria", LastName = "Nowakowska", Email = "marianowakowska@gmail.com", DateOfBirth=DateTime.Parse("1985-11-03")}
+                new User { Login = "nowak123", FirstName = "Jan", LastName = "Nowak", Email = "jannowak@gmail.com", DateOfBirth=DateTime.Parse("1999-05-05"), Password = "nowak123", PswdConfirmed = "nowak123"},
+                new User { Login = "maria123", FirstName = "Maria", LastName = "Nowakowska", Email = "marianowakowska@gmail.com", DateOfBirth=DateTime.Parse("1985-11-03"), Password = "maria123", PswdConfirmed = "maria123"}
             };
             users.ForEach(item => context.Users.AddOrUpdate(p => p.LastName, item));
             context.SaveChanges();

@@ -12,6 +12,7 @@ namespace LibraryAppMVC.Models
         [Key]
         [ForeignKey("User")]
         public int UserID { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
         public virtual User User { get; set; }
